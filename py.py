@@ -38,7 +38,6 @@ if __name__ == '__main__':
     threading.Thread(target=create_tray_icon).start()
     win32gui.ShowWindow(win32gui.GetForegroundWindow(), win32con.SW_HIDE)
 
-
     # Start the Discord bot in the main thread
     
     intents = discord.Intents.default()
