@@ -8,6 +8,8 @@ import pystray
 from PIL import Image
 import os
 from tokendiscord import TOKEN
+import discord
+from discord.ext import commands
 
 def on_quit():
     print("Exiting...")
@@ -59,14 +61,25 @@ if __name__ == '__main__':
             if message.author.id == 975108471307526144:
                 await message.add_reaction(emote)
 
-        while not client.is_closed():
-            await asyncio.sleep(1)
+            await check_for_virgo(message)
+
+        async def check_for_virgo(message):
+            if "я фанатка вірго" in message.content.lower() and message.author != client.user:
+                response = "я фанатка вірго"
+                await message.reply(response)
 
     @client.event
     async def on_ready():
         print(f'{client.user} is now running!')
         print('Logged in as')
         print(client.user.name)
+
+        activity = discord.Activity(
+        type=discord.ActivityType.watching,
+        name=f"{len(client.guilds)} сервери")
+        await client.change_presence(activity=activity)
+
+
         client.loop.create_task(my_background_task())
 
     client.run(TOKEN)
