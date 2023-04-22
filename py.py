@@ -10,6 +10,7 @@ import os
 from tokendiscord import TOKEN
 import discord
 from discord.ext import commands
+import random
 
 def on_quit():
     print("Exiting...")
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
-
+    PICTURE_FOLDER = "C:/Users/Эльф/Desktop/memess"
     REACTION_EMOJIS = ['🛐','♿','🅿️','🇷','🇴']
 
     async def my_background_task():
@@ -62,11 +63,31 @@ if __name__ == '__main__':
                 await message.add_reaction(emote)
 
             await check_for_virgo(message)
+            await check_for_cygan(message)
+            await on_pic(message)
 
         async def check_for_virgo(message):
             if "я фанатка вірго" in message.content.lower() and message.author != client.user:
                 response = "я фанатка вірго"
                 await message.reply(response)
+
+        async def check_for_cygan(message):
+            if "циган" in message.content.lower():
+                with open("cygan.jpg", "rb") as f:
+                    picture = discord.File(f)
+                    await message.reply(file=picture)
+
+        async def on_pic(message):
+            if message.content.startswith("!sendpicture"):
+                files = os.listdir(PICTURE_FOLDER)
+                random_file = random.choice(files)
+                file_path = os.path.join(PICTURE_FOLDER, random_file)
+                with open(file_path, "rb") as f:
+                    picture = discord.File(f)
+                    await message.reply(file=picture)
+
+        
+                    
 
     @client.event
     async def on_ready():
