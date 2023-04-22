@@ -8,9 +8,15 @@ import pystray
 from PIL import Image
 import os
 from tokendiscord import TOKEN
+from tokendiscord import client_id
+from tokendiscord import client_secret
 import discord
 from discord.ext import commands
 import random
+import requests
+
+PICTURE_FOLDER = "C:/Users/Эльф/Desktop/memess"
+REACTION_EMOJIS = ['🛐','♿','🅿️','🇷','🇴']
 
 def on_quit():
     print("Exiting...")
@@ -30,10 +36,7 @@ def create_tray_icon():
     menu = pystray.Menu(pystray.MenuItem("Open", on_open), pystray.MenuItem("Exit", on_quit))
     icon = pystray.Icon("My App", image, "My App", menu)
 
-    # Start the main event loop
     icon.run()
-
-    win32gui.SetWindowText(win32gui.GetForegroundWindow(), "Bot")
 
 if __name__ == '__main__':
     # Start the tray icon in a separate thread
@@ -46,9 +49,7 @@ if __name__ == '__main__':
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
-    PICTURE_FOLDER = "C:/Users/Эльф/Desktop/memess"
-    REACTION_EMOJIS = ['🛐','♿','🅿️','🇷','🇴']
-
+    
     async def my_background_task():
         await client.wait_until_ready()
 
@@ -65,6 +66,7 @@ if __name__ == '__main__':
             await check_for_virgo(message)
             await check_for_cygan(message)
             await on_pic(message)
+            await ss_count(message)
 
         async def check_for_virgo(message):
             if "я фанатка вірго" in message.content.lower() and message.author != client.user:
@@ -86,8 +88,48 @@ if __name__ == '__main__':
                     picture = discord.File(f)
                     await message.reply(file=picture)
 
-        
-                    
+        async def ss_count(message):
+            user_id = "5249196"
+            grant_type = "client_credentials"
+            scope = "public"
+
+            # Send a request to the authorization server to obtain an access token
+            response = requests.post(
+                "https://osu.ppy.sh/oauth/token",
+                data={
+                    "client_id": client_id,
+                    "client_secret": client_secret,
+                    "grant_type": grant_type,
+                    "scope": scope,
+                },
+            )
+
+            # Parse the response JSON to extract the access token
+            access_token = response.json()["access_token"]
+            # print(access_token)
+
+            headers = {
+                "Authorization": f"Bearer {access_token}",
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "x-api-version": str(20220707),
+            }
+            if message.content.startswith("!ss"):
+                words = message.content.split()
+                if len(words) < 2:
+                    response = "Please provide a user ID."
+                else:
+                    user_id = words[1]
+                    response = requests.get(f"https://osu.ppy.sh/api/v2/users/{user_id}/osu", headers=headers)
+                    if response.ok:
+                        user_data = response.json()
+                        grade_counts = user_data["statistics"]['grade_counts']['ss']
+                        grade_counts1 = user_data["statistics"]['grade_counts']['ssh']
+                        sum = grade_counts + grade_counts1
+                        response = f'The user with ID {user_id} has {sum} SS scores.'
+                    else:
+                        response = f'Request failed with status {response.status_code} and message: {response.text}'
+                await message.reply(response)
 
     @client.event
     async def on_ready():
