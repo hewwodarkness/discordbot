@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://osu.ppy.sh/rankings/osu/performance?country=UA&page=3#scores'
+url = 'https://osu.ppy.sh/rankings/osu/performance?country=UA&page=5#scores'
 
 try:
     response = requests.get(url)
