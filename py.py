@@ -25,7 +25,8 @@ from rule_check import rule_check
 from sankaku_check import sankaku_check
 r34Py = rule34Py()
 user_ids = [
-    '912627', '5249196', '11196666', '19381776'
+    '912627', '5249196'
+    # , '11196666', '19381776'
 
     # ,"10030328", "SS is hard", "Namazu"
 
@@ -185,9 +186,9 @@ def create_tray_icon():
 if __name__ == '__main__':
     # Start the tray icon in a separate thread
 
-    # win32gui.SetWindowText(win32gui.GetForegroundWindow(), "Bot")
-    # threading.Thread(target=create_tray_icon).start()
-    # win32gui.ShowWindow(win32gui.GetForegroundWindow(), win32con.SW_HIDE)
+    win32gui.SetWindowText(win32gui.GetForegroundWindow(), "Bot")
+    threading.Thread(target=create_tray_icon).start()
+    win32gui.ShowWindow(win32gui.GetForegroundWindow(), win32con.SW_HIDE)
 
     # Start the Discord bot in the main thread
     intents = discord.Intents.default()
@@ -742,6 +743,6 @@ if __name__ == '__main__':
         client.loop.create_task(osu_check())
         client.loop.create_task(osu_score_check())
         client.loop.create_task(rule_check(client))
-        client.loop.create_task(sankaku_check(client))
+        # client.loop.create_task(sankaku_check(client))
 
     client.run(TOKEN)
