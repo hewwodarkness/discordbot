@@ -229,7 +229,7 @@ async def osu_score_check():
         "Accept": "application/json",
         "x-api-version": str(20220707),
     }
-
+    first_iteration = True
     while True:
         try:
             for user_id in user_idsss:
@@ -247,7 +247,7 @@ async def osu_score_check():
                 if recent_activity:
                     recent_activity_id = recent_activity[0].id
                     print(recent_activity[0])
-                    if user_id not in previous_activity or recent_activity_id != previous_activity[user_id].id:
+                    if first_iteration or user_id not in previous_activity or recent_activity_id != previous_activity[user_id].id:
 
                         usernameosu = api.user(
                             user_id, mode="osu").username
@@ -299,6 +299,8 @@ async def osu_score_check():
                         await channel.send(embed=embed)
 
                         previous_activity[user_id] = recent_activity[0]
+                    else:
+                        first_iteration = False
                 print(user_id)
                 print("SS SCORE checked")
         except IndexError:
@@ -596,7 +598,7 @@ async def osu_score_checkua():
 @client.event
 async def on_ready():
     # Start both functions in separate tasks when the bot is ready
-    client.loop.create_task(osu_check())
+    # client.loop.create_task(osu_check())
     client.loop.create_task(osu_score_check())
     print('Bot is ready.')
 
