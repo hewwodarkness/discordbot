@@ -699,37 +699,8 @@ if __name__ == '__main__':
                                 embed.add_field(name="",
                                             value=f"✦ {recent_activity[0].rank.name} rank ✦ {recent_activity[0].pp}pp", inline=False)
 
-                            # embed.add_field(name="",
-                            #                 value=f"✦ Played at: {discord_time_str}", inline=False)
-
-                            # embed.add_field(
-                            #     name="Mods", value=recent_activity[0].mods, inline=True)
-
-                            # embed.set_author(name=f"{usernameosu} achieved score on {recent_activity[0].beatmapset.artist} - {recent_activity[0].beatmapset.title} [{recent_activity[0].beatmap.version}]", icon_url=recent_activity[0]._user.avatar_url)
-
                             thumbnail_url = f'https://b.ppy.sh/thumb/{recent_activity[0].beatmapset.id}l.jpg'
                             embed.set_thumbnail(url=thumbnail_url)
-
-                            # embed.add_field(
-                            #     name="PP", value=recent_activity[0].pp, inline=True)
-
-                            # embed.add_field(
-                            #     name="Difficulty", value=recent_activity[0].beatmap.difficulty_rating, inline=True)
-
-                            # embed.add_field(
-                            #     name="BPM", value=recent_activity[0].beatmap.bpm, inline=True)
-
-                            # embed.add_field(
-                            #     name="Combo", value=recent_activity[0].max_combo, inline=True)
-
-                            # embed.add_field(
-                            #     name="Grade", value=recent_activity[0].rank.name, inline=True)
-
-                            # embed.add_field(
-                            #     name="Passed", value=recent_activity[0].passed, inline=True)
-
-                            # embed.add_field(
-                            #     name="Played Date", value=recent_activity[0].created_at, inline=True)
 
                             beatmap_length = recent_activity[0].beatmap.total_length
                             minutes, seconds = divmod(beatmap_length, 60)
