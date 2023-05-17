@@ -1,7 +1,5 @@
 text = """
-#1   | Zalaria         | 70,142
 #2   | Sleepteiner     | 65,434
-#3   | Przegrany       | 51,140
 #4   | WiMpN           | 44,484
 #5   | Virgo           | 40,719
 #6   | EEEEEEEEEEEEEEE | 39,972
@@ -23,16 +21,13 @@ text = """
 #22  | seven39         | 22,666
 #23  | Hammer          | 22,615
 #24  | Duskyui         | 21,691
-#25  | Haadez          | 21,656
 #26  | phionebaby56    | 20,980
 #27  | Marquez         | 20,759
 #28  | Genki1000       | 20,515
 #29  | Namazu          | 20,440
 #30  | Sowisty         | 20,180
 #31  | Suwako          | 20,130
-#32  | ryuu            | 20,065
 #33  | ImMyyrh         | 19,699
-#34  | Ganondorf       | 19,621
 #35  | Wilchq          | 19,206
 #36  | Andrea          | 18,844
 #37  | Autumn Brightness | 18,680
@@ -47,7 +42,6 @@ text = """
 #46  | Azukane         | 17,516
 #47  | Musa            | 16,924
 #48  | Koltay          | 16,761
-#49  | I D S           | 16,409
 #50  | STS2            | 16,385
 #51  | wiuuuh          | 16,380
 #52  | Maklovitz       | 16,340
@@ -56,19 +50,14 @@ text = """
 #55  | Hranolka        | 15,967
 #56  | novaaa          | 15,629
 #57  | SS is hard      | 15,557
-#58  | Evgas           | 15,500
 #59  | [-Griffin-]     | 15,483
 #60  | Kilgar          | 15,320
 #61  | aya_nico        | 15,164
-#62  | Inoculum        | 14,919
 #63  | Aikyuu-Chan     | 14,726
-#64  | Serious07       | 14,493
 #65  | Ma Yuyu         | 14,314
 #66  | Amity-Senpai    | 13,986
 #67  | Piro13          | 13,725
-#68  | TicClick        | 13,637
 #69  | Emilily         | 13,600
-#70  | [ryuu]          | 13,533
 #71  | boob enjoyer    | 13,190
 #72  | Dakishimeru     | 13,181
 #73  | iPhong          | 13,153
@@ -76,11 +65,9 @@ text = """
 #75  | Tactic          | 12,929
 #76  | auroraflow12    | 12,681
 #77  | -Purple         | 12,675
-#78  | -Koyuki-        | 12,663
 #79  | Psychicpsycho   | 12,409
 #80  | Domi            | 12,395
 #81  | Lokra           | 12,135
-#82  | Brittany Miller | 12,113
 #83  | hent2222        | 11,995
 #84  | Arx Alveria     | 11,992
 #85  | Swakz           | 11,737
